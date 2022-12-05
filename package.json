@@ -1,0 +1,26 @@
+{
+  "name": "photo-uploader",
+  "version": "1.0.0",
+  "description": "Photo Uploader App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DKatuk/photo-uploader.git"
+  },
+  "keywords": [
+    "photo",
+    "uploader"
+  ],
+  "author": "Dilara Katuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DKatuk/photo-uploader/issues"
+  },
+  "homepage": "https://github.com/DKatuk/photo-uploader#readme",
+  "devDependencies": {
+    "prettier": "2.8.0"
+  }
+}
