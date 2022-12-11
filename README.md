@@ -12,6 +12,10 @@ This is not a frontend application. This is a project to learn backend developme
 # Expressjs
 - Benefits of using Expressjs: In my <a href="https://github.com/DKatuk/nodejs-server">previous work</a>. When Nodejs' HTTP core module is used, lot of if/else statements had to be written to send requests to different paths. The code becomes complicated. Expressjs (A Nodejs framework) gives a cleaner code, handling paths easily.
 - To install package: **npm i express --save**
+- When a web template is used, the static files (images, CSS, fonts, videos etc.) can be rendered on any path( e.g, '/'). 
+ 1) Indicate where is the static files reside by using Express Static Files Middleware: ```app.use(express.static('public'))```
+ 2) Use path core module of Nodejs: ```const path = require('path');```
+ 3) Send Index.html file which uses these static files inside **app.get()** method: ```res.sendFile(path.join(__dirname, 'temp/index.html'));```
 
 # Setup prettier on repo
 - **npm init** to create a package.json file.
