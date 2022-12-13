@@ -1,8 +1,7 @@
- const mongoose = require('mongoose');
- const { Schema } = mongoose;
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-
- //Create a schema
+//Create a schema
 const PhotoSchema = new Schema({
   title: String,
   description: String,
