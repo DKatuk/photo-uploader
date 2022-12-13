@@ -46,6 +46,7 @@ node test
 ```
 Run **node test** in terminal and refresh Compass Database to see CRUD operations. You can also check VSCode terminal.
 
+6) **Add Photo Page and Post Request**: Create a form with *method* an *action* (Created in add.ejs file). Name attributes of Input elements inside the form are important. When you make a POST Request with expressjs (in app.js file), you will use *action* information, and a request body object is created according to the name attributes that you used in these input elements. (2 Express middlewares were used to end req-res cycle: **urlencoded** and **json()**). If you do not use *name* attributes in input elements, you will log an empty request body object. Make sure that these name attributes match with the Database Schema.
 
 # Setup prettier on repo
 - **npm init** to create a package.json file.
