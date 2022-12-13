@@ -1,18 +1,18 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
+// const { Schema } = mongoose;
 
 //Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/photo-uploader-test-db');
+// mongoose.connect('mongodb://localhost:27017/photo-uploader-test-db');
 
 //Create a schema
-const PhotoSchema = new Schema({
-  title: String,
-  description: String,
-});
+// const PhotoSchema = new Schema({
+//   title: String,
+//   description: String,
+// });
 
 //Create a model
-const Photo = mongoose.model('Photo', PhotoSchema);
+// const Photo = mongoose.model('Photo', PhotoSchema);
 
 //-------------------CRUD-------------------//
 //CREATE A NEW PHOTO

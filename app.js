@@ -1,6 +1,10 @@
 const express = require('express');
-const ejs = require('ejs');
 const app = express();
+const ejs = require('ejs');
+const mongoose = require('mongoose');
+const Photo = require('./models/Photo');
+//Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/photo-uploader-db');
 
 // TEMPLATE ENGINE
 app.set('view engine', 'ejs');
@@ -11,8 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', async (req, res) => {
+  const photos = await Photo.find({});
+  res.render('index', { photos });
 });
 
 app.get('/about', (req, res) => {
@@ -24,8 +29,9 @@ app.get('/add', (req, res) => {
 });
 
 //POST REQUEST
-app.post('/photos', (req, res) => {
-  console.log(req.body);
+app.post('/photos', async (req, res) => {
+  // console.log(req.body);
+  await Photo.create(req.body);
   res.redirect('/');
 });
 
