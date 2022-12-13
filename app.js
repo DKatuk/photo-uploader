@@ -5,8 +5,10 @@ const app = express();
 // TEMPLATE ENGINE
 app.set('view engine', 'ejs');
 
-//MIDDLEWARE
+//MIDDLEWARES
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //ROUTES
 app.get('/', (req, res) => {
@@ -19,6 +21,12 @@ app.get('/about', (req, res) => {
 
 app.get('/add', (req, res) => {
   res.render('add');
+});
+
+//POST REQUEST
+app.post('/photos', (req, res) => {
+  console.log(req.body);
+  res.redirect('/');
 });
 
 const port = 3000;
