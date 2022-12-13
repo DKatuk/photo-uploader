@@ -14,7 +14,7 @@ This is not a frontend application. This is a project to learn backend developme
 - Benefits of using Expressjs: In my <a href="https://github.com/DKatuk/nodejs-server">previous work</a>. When Nodejs' HTTP core module is used, lot of if/else statements had to be written to send requests to different paths. The code becomes complicated. Expressjs (A Nodejs framework) gives a cleaner code, handling paths easily.
 - To install package: **npm i express --save**
 - When a web template is used, the static files (images, CSS, fonts, videos etc.) can be rendered on any path( e.g, '/'). 
- 1) Indicate where is the static files reside by using Express Static Files Middleware: ```app.use(express.static('public'))```
+ 1) Indicate where the static files reside by using Express Static Files Middleware: ```app.use(express.static('public'))```
  2) Use path core module of Nodejs: ```const path = require('path');```
  3) Send Index.html file which uses these static files inside **app.get()** method: ```res.sendFile(path.join(__dirname, 'temp/index.html'));```
 - We can show static files on routes. However, as the name suggests, these files are static. If we want to show **dynamic content**, we have to use **Template Engines**. 
@@ -33,6 +33,19 @@ This is not a frontend application. This is a project to learn backend developme
 });
 ```
 4) **partials folder** has been created to store repeating code ( Header, Navigation, Footer). To import these codes, use this format: e.g., ```<%- include('partials/_header') -%>```
+5) **MongoDB and Mongoose**: In order to have dynamic content in the website, you need to use a database. So that, you can upload new data, edit and delete them. MongoDB is a NoSQL, document database, with the scalability and flexibility. 
+Download <a href="https://www.mongodb.com/products/compass">MongoDB Compass</a> which is a Graphical User Interface for querying, optimizing, and analyzing your MongoDB data.
+CRUD operations takes lot of time with MongoDB only. The code gets bigger and complex. Use <a href="https://mongoosejs.com/">Mongoose</a>, which is a Node.js-based Object Data Modeling (ODM) library for MongoDB.
+```
+npm i mongoose
+```
+Go and check <a href="https://github.com/DKatuk/photo-uploader/blob/main/test.js">test.js</a> file to see how to do CRUD operations with Mongoose.
+
+```
+node test
+```
+Run **node test** in terminal and refresh Compass Database to see CRUD operations. You can also check VSCode terminal.
+
 
 # Setup prettier on repo
 - **npm init** to create a package.json file.
