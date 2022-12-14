@@ -101,7 +101,7 @@ Later, render these images in the UI by using ejs
 <img src="<%= photos[i].image %>" ....> 
 ``` 
 
-10)**PUT and DELETE requests**: <a href="">Method-override</a> package was used to support Put and Delete HTTP requests.
+10)**Editing and Deleting Photos with PUT and DELETE requests**: <a href="">Method-override</a> package was used to support Put and Delete HTTP requests.
 ```
 const methodOverride = require('method-override');
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
