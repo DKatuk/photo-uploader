@@ -117,6 +117,17 @@ Since delete button was not a form field, we used anchor tag, and defined method
 <a href="/photo/<%= photo._id %>?_method=DELETE" ...><span>Delete Photo</span></a>
 ```
 
+11)**Pagination**: For pagination we need these information
+- Query (e.g., "?page=2") (we can get this by **req.query**)
+- How many images we want to show in one page
+- How many photos we have in total
+
+While we are rendering photos in index.ejs file, we can ùse *skip()* and *limit()* methods to limit how many photos we want to show in one page and skip previous photos.
+```
+ .skip((page - 1) * photosPerPage)
+ .limit(photosPerPage);
+```
+After that, you need to make pagination buttons functional by making them change query and show page numbers accordingly (+ show active one as well).
 
 
 # Setup prettier on repo
