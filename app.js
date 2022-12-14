@@ -92,6 +92,13 @@ app.put('/photo/:id', async (req, res) => {
 // DELETE REQUEST
 
 app.delete('/photo/:id', async (req, res) => {
+
+  //DELETE THE PHOTO FROM THE UPLOADS FOLDER
+  const photo = await Photo.findOne({ _id: req.params.id });
+  const deletedImagePath = __dirname + '/public' + photo.image;
+  fs.unlinkSync(deletedImagePath);
+
+  //this method deletes the photo data from the database but does not remove photo from the uploads folder
   await Photo.findByIdAndRemove(req.params.id);
   res.redirect('/');
 });
