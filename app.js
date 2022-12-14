@@ -22,8 +22,20 @@ app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
 //ROUTES
 app.get('/', async (req, res) => {
-  const photos = await Photo.find({}).sort('-dateCreated');
-  res.render('index', { photos });
+  // console.log(req.query)
+  const page = req.query.page || 1;
+  const photosPerPage = 3;
+  const totalPhotos = await Photo.find().countDocuments();
+  // console.log(totalPhotos);
+  const photos = await Photo.find({})
+    .sort('-dateCreated')
+    .skip((page - 1) * photosPerPage)
+    .limit(photosPerPage);
+  res.render('index', {
+    photos,
+    current: page,
+    pages: Math.ceil(totalPhotos / photosPerPage),
+  });
 });
 
 app.get('/about', (req, res) => {
@@ -92,7 +104,6 @@ app.put('/photo/:id', async (req, res) => {
 // DELETE REQUEST
 
 app.delete('/photo/:id', async (req, res) => {
-
   //DELETE THE PHOTO FROM THE UPLOADS FOLDER
   const photo = await Photo.findOne({ _id: req.params.id });
   const deletedImagePath = __dirname + '/public' + photo.image;
