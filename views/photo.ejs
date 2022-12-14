@@ -55,10 +55,10 @@
 							<!-- Share box -->
 							<div class="tm-bg-gray tm-share-box">
 								<div class="text-center">
-									<button class="btn btn-primary p-0 mb-4 tm-btn-animate tm-btn-download tm-icon-download"><span>Update Details</span></button>	
+									<a href="/photos/edit/<%= photo._id %>" class="btn btn-primary p-0 mb-4 tm-btn-animate tm-btn-download tm-icon-download"><span>Update Details</span></a>	
 								</div>	
 								<div class="text-center">
-									<button class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete Photo</span></button>	
+									<a href="/photo/<%= photo._id %>?_method=DELETE" onclick="return confirm('ARE YOU SURE?')"class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete Photo</span></a>	
 								</div>								
 							</div>
 						</div>
@@ -68,14 +68,6 @@
 				<!-- Subscribe form and footer links -->
                 <%- include ('partials/_footer.ejs') %> 
                 <!-- row -->
-
-                <footer class="row pt-5">
-                    <div class="col-12">
-                        <p class="text-right">Copyright 2020 The Video Catalog Company 
-                        
-                        - Designed by <a href="https://templatemo.com" rel="nofollow" target="_parent">TemplateMo</a></p>
-                    </div>
-                </footer>
 			</div> <!-- .tm-content-container -->
 		</div>
 	</div>

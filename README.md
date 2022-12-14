@@ -100,6 +100,25 @@ Later, render these images in the UI by using ejs
 ``` 
 <img src="<%= photos[i].image %>" ....> 
 ``` 
+
+10)**PUT and DELETE requests**: <a href="">Method-override</a> package was used to support Put and Delete HTTP requests.
+```
+const methodOverride = require('method-override');
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
+```
+You need { methods: ['POST', 'GET'] } for Delete request to work when you use the middleware.
+
+With this middleware, you simulate Post and Get methods while you practice Put and Delete methods for browsers that do not support. A new edit.ejs page was created to update photo details with PUT request. You need to use "?_method=PUT" and tell which method (method="POST") you want to simulate.
+```
+<form id="contact-form" action="/photo/<%= photo._id %>?_method=PUT" method="POST" class="tm-contact-form"  >
+```
+Since delete button was not a form field, we used anchor tag, and defined method in href attribute.
+```
+<a href="/photo/<%= photo._id %>?_method=DELETE" ...><span>Delete Photo</span></a>
+```
+
+
+
 # Setup prettier on repo
 - **npm init** to create a package.json file.
 - Open Command Search (CTRL + SHIFT + P) on VSCode.

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Photo = require('./models/Photo');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
+const methodOverride = require('method-override');
 
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/photo-uploader-db');
@@ -17,6 +18,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
 //ROUTES
 app.get('/', async (req, res) => {
@@ -36,6 +38,11 @@ app.get('/photos/:id', async (req, res) => {
   // console.log(req.params.id); //this will show the id of the photo
   const photo = await Photo.findById({ _id: req.params.id });
   res.render('photo', { photo });
+});
+
+app.get('/photos/edit/:id', async (req, res) => {
+  const photo = await Photo.findById({ _id: req.params.id });
+  res.render('edit', { photo });
 });
 
 //POST REQUEST
@@ -62,6 +69,31 @@ app.post('/photos', async (req, res) => {
 
   // await Photo.create(req.body);
   // res.redirect('/');
+});
+
+// PUT REQUEST to update/edit the photo details
+
+app.put('/photo/:id', async (req, res) => {
+  //THERE ARE TWO WAYS TO UPDATE THE DATA
+
+  //1st way
+  // const photo = await Photo.findById({ _id: req.params.id });
+  // photo.title = req.body.title;
+  // photo.description = req.body.description;
+  // photo.save();
+
+  //2nd way
+  const photo = await Photo.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  res.redirect('/photos/' + req.params.id);
+});
+
+// DELETE REQUEST
+
+app.delete('/photo/:id', async (req, res) => {
+  await Photo.findByIdAndRemove(req.params.id);
+  res.redirect('/');
 });
 
 const port = 3000;
