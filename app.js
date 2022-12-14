@@ -21,11 +21,17 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.render('about');
+  res.render('about', );
 });
 
 app.get('/add', (req, res) => {
   res.render('add');
+});
+
+app.get('/photos/:id', async (req, res) => {
+  // console.log(req.params.id); //this will show the id of the photo
+  const photo = await Photo.findById({_id: req.params.id});
+  res.render('photo', { photo })
 });
 
 //POST REQUEST

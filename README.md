@@ -48,6 +48,14 @@ Run **node test** in terminal and refresh Compass Database to see CRUD operation
 
 6) **Add Photo Page and Post Request**: Create a form with *method* an *action* (Created in add.ejs file). Name attributes of Input elements inside the form are important. When you make a POST Request with expressjs (in app.js file), you will use *action* information, and a request body object is created according to the name attributes that you used in these input elements. (2 Express middlewares were used to end req-res cycle: **urlencoded** and **json()**). If you do not use *name* attributes in input elements, you will log an empty request body object. Make sure that these name attributes match with the Database Schema.
 7) **Rendering Dynamic Content**: We received photo data on the client side, and logged Request Body in console with expressjs POST request. Now, we need to send this data to Database. We use **mongoose** to send data. First, create *models* folder and create corresponding file for a database model. (*Photo.js* creates Photo model). Create the database where you will have the CRUD operations. Require or Import the model that you are going to use in that file (*app.js*). After GET request, you need to send data to corresponding .ejs file (e.g., index.ejs) with render() method. Then, modify that document to show data dynamically in the UI.
+8) **Rendering Single Photo Pages**: MongoDB gives each data a unique id (_id). You can use it to distinguish each data and create single photo pages. Use this data in URL parameters, and make a request to single photo with that ID and render it in its unique page
+```
+app.get('/photos/:id', async (req, res) => {
+  //console.log(req.params.id); //this will show the id of the photo
+  const photo = await Photo.findById({_id: req.params.id});
+  res.render('photo', { photo })
+});
+```
 
 # Setup prettier on repo
 - **npm init** to create a package.json file.
