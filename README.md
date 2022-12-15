@@ -6,7 +6,6 @@ In this project, I practiced:
 4) Template Engines (EJS)
 5) MongoDB and mongoose (CRUD operations)
 6) Pagination
-7) Heroku deployment
 
 This is not a frontend application. This is a project to learn backend development. I used frontend design template shared publicly <a href="https://templatemo.com/tm-552-video-catalog">here</a>. 
 
