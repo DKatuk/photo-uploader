@@ -2,12 +2,11 @@
 In this project, I practiced:
 1) Expressjs (Static Files, Middleware- Express middleware refers to a set of functions that execute during the processing of HTTP requests received by an Express application)
 2) Code formatting with Prettier
-3) Nodemon
-4) Template Engines (EJS)
-5) MongoDB and mongoose (CRUD operations)
-6) Pagination
+3) Template Engines (EJS)
+4) MongoDB and mongoose (CRUD operations)
+5) Pagination
 
-This is not a frontend application. This is a project to learn backend development. I used frontend design template shared publicly <a href="https://templatemo.com/tm-552-video-catalog">here</a>. 
+This is not a frontend application. This is a project to learn backend development. I used frontend design template shared publicly <a href="https://templatemo.com/tm-552-video-catalog">here</a>. Below, you can find my summary about what I learned while coding this project.
 
 # Expressjs and Project Structure
 - Benefits of using Expressjs: In my <a href="https://github.com/DKatuk/nodejs-server">previous work</a>. When Nodejs' HTTP core module is used, lot of if/else statements had to be written to send requests to different paths. The code becomes complicated. Expressjs (A Nodejs framework) gives a cleaner code, handling paths easily.
@@ -21,7 +20,7 @@ This is not a frontend application. This is a project to learn backend developme
  3)Send Index.html file which uses these static files inside **app.get()** method: ```res.sendFile(path.join(__dirname, 'temp/index.html'));```
 - We can show static files on routes. However, as the name suggests, these files are static. If we want to show **dynamic content**, we have to use **Template Engines**. 
 
-**EJS npm package (Embedded Java Script)** helps to render dynamic content. 
+**EJS npm package (Embedded Java Script)** helps to render dynamic content and write JavaScript code in HTML (in ejs files).
  ```npm i ejs
     const ejs = require('ejs');
     //Template Engine
@@ -105,9 +104,9 @@ Later, render these images in the UI by using ejs
 const methodOverride = require('method-override');
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 ```
-You need { methods: ['POST', 'GET'] } for Delete request to work when you use the middleware.
+You need { methods: ['POST', 'GET'] } for Delete request to work when you use the middleware. You also need to use Nodejs FS module to delete the image file from uploads folder.
 
-With this middleware, you simulate Post and Get methods while you practice Put and Delete methods for browsers that do not support. A new edit.ejs page was created to update photo details with PUT request. You need to use "?_method=PUT" and tell which method (method="POST") you want to simulate.
+With this Method-override middleware, you simulate Post and Get methods while you practice Put and Delete methods for browsers that do not support. A new edit.ejs page was created to update photo details with PUT request. You need to use "?_method=PUT" and tell which method (method="POST") you want to simulate.
 ```
 <form id="contact-form" action="/photo/<%= photo._id %>?_method=PUT" method="POST" class="tm-contact-form"  >
 ```
